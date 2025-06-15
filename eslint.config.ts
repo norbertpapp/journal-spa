@@ -16,6 +16,7 @@ export default defineConfigWithVueTs(
     
     rules: {
 			eqeqeq: "off",
+      "@typescript-eslint/no-explicit-any": "off",
       "vue/multi-word-component-names": ["off", {
         "ignores": ["Journal"]
       }],

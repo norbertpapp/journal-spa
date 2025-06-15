@@ -4,13 +4,19 @@ import { checkLocalStorage, initFromLocalStorage, setLocalStorage } from './util
 import CreateJournal from './components/CreateJournal.vue';
 import JournalList from './components/JournalList.vue';
 
-const journals: Ref<string[]> = ref([]);
+interface Journal {
+  id: string;
+  date: Date;
+  content: string;
+}
+
+const journals: Ref<Journal[]> = ref([]);
 const darkThemeEnabled: Ref<boolean> = ref(false);
 const themeIcon = computed(() => darkThemeEnabled.value ? '🌝' : '🌞')
 
 /* eslint-disable  @typescript-eslint/no-explicit-any */
 const saveJournal = (item: any) => {
-  const currentJournals: string[] = [...journals.value];
+  const currentJournals: Journal[] = [...journals.value];
   currentJournals.unshift(item);
   journals.value = [...currentJournals];
   setLocalStorage(journals.value as any[]);

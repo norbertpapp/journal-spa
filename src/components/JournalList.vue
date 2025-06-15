@@ -11,13 +11,17 @@
 <script lang="ts" setup>
 import { onMounted } from 'vue';
 import Journal from './Journal.vue';
-   
-const props = defineProps({
-  journals: {
-    type: Array,
-    default: undefined,
-  }
-});
+
+interface Journal {
+  id: string;
+  date: Date;
+  content: string;
+}
+
+/* eslint-disable  @typescript-eslint/no-unused-vars */
+const props = defineProps<{
+  journals: Journal[];
+}>();
 
 </script>
 <style lang="scss">

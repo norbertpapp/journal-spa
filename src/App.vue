@@ -10,9 +10,13 @@ interface Journal {
   content: string;
 }
 
+const prefersLightColorScheme = () =>
+  window &&
+  window.matchMedia &&
+  window.matchMedia('(prefers-color-scheme: light)').matches;
 const journals: Ref<Journal[]> = ref([]);
-const darkThemeEnabled: Ref<boolean> = ref(false);
-const themeIcon = computed(() => darkThemeEnabled.value ? '🌝' : '🌞')
+const darkThemeEnabled: Ref<boolean> = ref(!prefersLightColorScheme);
+const themeIcon = computed(() => darkThemeEnabled.value ? '🌝' : '🌞');
 
 /* eslint-disable  @typescript-eslint/no-explicit-any */
 const saveJournal = (item: any) => {
